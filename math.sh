@@ -11,7 +11,9 @@ while true; do
   fi
 
   if [[ "$input" =~ \. ]]; then
-    read -p "Enter the scale for floating point operations: " scale
+    decimal_places=${input##*.}
+    scale=${#decimal_places}
+    
     result=$(echo "scale=$scale; $input" | bc -l 2>/dev/null)
   else
     result=$(echo "$input" | bc 2>/dev/null)
