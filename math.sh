@@ -3,7 +3,12 @@
 echo "Welcome to the math calculator!"
 
 while true; do
-  read -p "Please enter a mathematical expression (or press Ctrl+C to quit): " input
+  read -p "Please enter a mathematical expression (type 'exit' or press Ctrl+C to quit): " input
+
+  if [ "$input" == "exit" ]; then
+    echo "Exiting interactive mode."
+    break
+  fi
 
   if [ -z "$input" ]; then
     echo "Error: Please enter a mathematical expression."
