@@ -11,7 +11,6 @@ A simple command-line tool for performing basic arithmetic calculations.
 
 - Run the `math.sh` script: `./math.sh`
 - Follow the prompts to enter a mathematical expression.
-- For expressions with decimal numbers, enter the desired scale.
 - The result of the calculation will be displayed.
 
 ## License
