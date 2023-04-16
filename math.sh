@@ -7,9 +7,9 @@ function display_help {
   echo "Math Calculator"
   echo "Usage: ./math.sh [OPTIONS]"
   echo "Options:"
-  echo "  --help            Display this help message."
-  echo "  --history         Display the history of previous calculations."
-  echo "  --clean-history   Remove the history file."
+  echo "  --help            Display this help message"
+  echo "  --history         Display the calculator's history"
+  echo "  --clear           Clear the calculator's history"
 }
 
 function display_history {
@@ -22,12 +22,8 @@ function display_history {
 }
 
 function clean_history {
-  if [ -s "$HISTORY_FILE" ]; then
-    rm -rf "$HISTORY_FILE"
-    echo "History file removed."
-  else
-    echo "History does not exist."
-  fi
+  rm -rf "$HISTORY_FILE"
+  echo "History file removed."
 }
 
 while [[ $# -gt 0 ]]; do
@@ -40,7 +36,7 @@ while [[ $# -gt 0 ]]; do
       display_history
       exit 0
       ;;
-    --clean-history)
+    --clear)
       clean_history
       exit 0
       ;;
@@ -51,6 +47,14 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+
+is_math_expr() {
+    if [[ "$1" =~ ^[[:digit:]\.\+\-\*/\(\)e]+$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
 
 echo "Welcome to the math calculator!"
 echo "Type 'exit' or press Ctrl+C to quit."
@@ -77,6 +81,11 @@ while true; do
     continue
   fi
 
+  if ! is_math_expr "$input"; then
+    echo "Error: Input is not a valid mathematical expression."
+    continue
+  fi
+
   if [[ "$input" =~ \. ]]; then
     decimal_places=${input##*.}
     scale=${#decimal_places}
@@ -90,7 +99,6 @@ while true; do
     echo "Error: Division by 0 is not allowed."
     continue
   else
-    echo "$input = $result" >> "$HISTORY_FILE"
     echo "Result: $result"
   fi
 done
