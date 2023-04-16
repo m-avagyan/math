@@ -100,5 +100,6 @@ while true; do
     continue
   else
     echo "Result: $result"
+    echo "$input = $result" >> "$HISTORY_FILE"
   fi
 done
