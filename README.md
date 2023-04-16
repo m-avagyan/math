@@ -4,7 +4,7 @@ A simple command-line tool for performing basic arithmetic calculations.
 
 ## Installation
 
-- Clone the repository: `git clone https://github.com/m-avagyan/math-calculatort.git`
+- Clone the repository: `git clone https://github.com/m-avagyan/math-calculator.git`
 - Ensure you have Bash and BC installed on your system.
 
 ## Usage
